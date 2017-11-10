@@ -19,20 +19,21 @@ h1 {
 
 .gameBoard {
   border: 1px solid black;
-  height: 750px;
-  width: 850px;
+  height: 780px;
+  width: 860px;
   box-sizing: border-box;
   margin: auto;
   /*display: flex;
   flex-direction: column;*/
 }
+/*//square grid*/
 .square {
   border: 3px solid white;
   height: 100px;
   width: 100px;
   display: inline-block;
   background-color: pink;
-  float: left;
+  /*float: left;*/
   font-size: 60px;
   text-align: center;
   /*vertical-align: middle;*/
@@ -40,13 +41,14 @@ h1 {
   position: static;
   z-index: 0;
 }
-.circle{
+/*circle grid*/
+.circle {
   border: 3px solid white;
+  background-color: pink;
   height: 100px;
   width: 100px;
   display: inline-block;
-  /*background-color: ;*/
-  float: left;
+  /*float: left;*/
   font-size: 60px;
   text-align: left;
   vertical-align: left;
@@ -56,7 +58,9 @@ h1 {
   z-index: 1;
 }
 
-.column {
-
+.row {
+  position: relative;
+  /*top: -742px;*/
+  z-index: 1;
 
 }
