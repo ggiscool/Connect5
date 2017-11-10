@@ -1,9 +1,9 @@
 body {
   background: url("http://i.imgur.com/CMWTqJx.jpg?1");
-background-color: rgba(238, 238, 238, 0.81) !important;
-background-blend-mode: color;
-text-align: center;
-}
+  background-color: rgba(238, 238, 238, 0.81) !important;
+  background-blend-mode: color;
+  text-align: center;
+  }
 
 h1 {
   font-family: 'Abril Fatface', cursive;
@@ -19,28 +19,35 @@ h1 {
 
 .gameBoard {
   border: 1px solid black;
-  height: 780px;
-  width: 860px;
+  border-bottom: 15px solid black;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  height: 800px;
+  width: 890px;
   box-sizing: border-box;
   margin: auto;
   /*display: flex;
   flex-direction: column;*/
 }
+
+
 /*//square grid*/
-.square {
+/*.square {
   border: 3px solid white;
   height: 100px;
   width: 100px;
   display: inline-block;
   background-color: pink;
   /*float: left;*/
-  font-size: 60px;
-  text-align: center;
+  /*font-size: 60px;
+  text-align: center;*/
   /*vertical-align: middle;*/
   /*top: -742px;*/
-  position: static;
+  /*position: static;
   z-index: 0;
-}
+}*/
+
+
 /*circle grid*/
 .circle {
   border: 3px solid white;

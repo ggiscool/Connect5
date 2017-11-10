@@ -31,13 +31,13 @@ $(() => {
   // $gameBoard.append($row8);
 
   // make square grid
-  for (let i = 0; i < 56; i++){
-    let id = i + 1;
-    id.toString();
-    let $square = $('<div>').addClass('square').attr('id', id);
-    $gameBoard.append($square);
-    // $('.container').append($gameBoard);
-  };
+  // for (let i = 0; i < 56; i++){
+  //   let id = i + 1;
+  //   id.toString();
+  //   let $square = $('<div>').addClass('square').attr('id', id);
+  //   $gameBoard.append($square);
+  //   // $('.container').append($gameBoard);
+  // };
 
   //make columns
 const rows = (row) => {
