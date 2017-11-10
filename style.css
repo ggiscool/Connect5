@@ -17,13 +17,14 @@ h1 {
   width: 100%;
 }
 
-.gameboard {
+.gameBoard {
   border: 1px solid black;
   height: 750px;
   width: 850px;
   box-sizing: border-box;
   margin: auto;
-  /*display: flex;*/
+  /*display: flex;
+  flex-direction: column;*/
 }
 .square {
   border: 3px solid white;
@@ -34,7 +35,8 @@ h1 {
   float: left;
   font-size: 60px;
   text-align: center;
-  vertical-align: middle;
+  /*vertical-align: middle;*/
+  /*top: -742px;*/
   position: static;
   z-index: 0;
 }
@@ -50,10 +52,11 @@ h1 {
   vertical-align: left;
   border-radius: 60px;
   position: relative;
-  top: -742px;
+  /*top: -742px;*/
   z-index: 1;
 }
 
-.column1 {
+.column {
+
 
 }
