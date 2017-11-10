@@ -23,6 +23,7 @@ h1 {
   width: 850px;
   box-sizing: border-box;
   margin: auto;
+  /*display: flex;*/
 }
 .square {
   border: 3px solid white;
@@ -45,17 +46,14 @@ h1 {
   /*background-color: ;*/
   float: left;
   font-size: 60px;
-  text-align: center;
-  vertical-align: middle;
+  text-align: left;
+  vertical-align: left;
   border-radius: 60px;
   position: relative;
   top: -742px;
   z-index: 1;
 }
 
-.playPiece1{
-
-}
-.playPiece2{
+.column1 {
 
 }
