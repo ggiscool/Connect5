@@ -21,6 +21,7 @@ $(() => {
   const $row7 = $('<div>').addClass('row').attr('id', 'row7');
   // const $row8 = $('<div>').addClass('row').attr('id', 'row8');
 
+//Adding rows to the gameboard---------------------
   $gameBoard.append($row1);
   $gameBoard.append($row2);
   $gameBoard.append($row3);
@@ -30,7 +31,7 @@ $(() => {
   $gameBoard.append($row7);
   // $gameBoard.append($row8);
 
-  // make square grid
+  // make square grid - didn't work out----------------
   // for (let i = 0; i < 56; i++){
   //   let id = i + 1;
   //   id.toString();
@@ -39,7 +40,7 @@ $(() => {
   //   // $('.container').append($gameBoard);
   // };
 
-  //make columns
+  //make row function----------------------
 const rows = (row) => {
   for (let i = 0; i < 8; i++){
     let num = i + 1;
@@ -52,7 +53,7 @@ const rows = (row) => {
     };
   };
 
-
+//Calling row formation functions-------------------
 rows($row1);
 rows($row2);
 rows($row3);
@@ -62,28 +63,21 @@ rows($row6);
 rows($row7);
 // rows($row8);
 
-  // for (let i = 0; i < 56; i++){
-  //   let id = 'circle' + i + 1;
-  //   id.toString();
-  //   let $circle = $('<div>').addClass('circle').attr('id', id);
-  //   $gameBoard.append($circle);
-  //   // $('.container').append($gameBoard);
-  // };
 
-//make basic logic
+//make basic logic------------------------
   const $classCircle = $('.circle');
 
    const playersTakeTurns = (event) => {
-     if($(event.currentTarget).text() === ''){
+     if($(event.currentTarget).css('background-color') !== 'red' || 'blue'){
        if( alternate === true){
          $(event.currentTarget).css('background-color', 'red');
-        //  $(event.currentTarget).text('red');
+        //  $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px');
          console.log("1");
          //Show text Player 1, it's your turn!
          alternate = false;
        }else if(alternate === false){
          $(event.currentTarget).css('background-color', 'blue');
-        //  $(event.currentTarget).text('blue');
+        //  $(event.currentTarget).text('2').css('color', 'blue').css('font-size', '10px');
          console.log("2");
          //Show text Player 2, it's your turn!
          alternate = true;
@@ -94,26 +88,33 @@ rows($row7);
    };
 
 
+
+
+
+
+
+
+
+
+
+//Calling take turns function
 $classCircle.on('click', playersTakeTurns);
 
-$row1.on('click', () =>{console.log('row1 logging')});
-$row2.on('click', () =>{console.log('row2 logging')});
-$row3.on('click', () =>{console.log('row3 logging')});
-$row4.on('click', () =>{console.log('row4 logging')});
-$row5.on('click', () =>{console.log('row5 logging')});
-$row6.on('click', () =>{console.log('row6 logging')});
-$row7.on('click', () =>{console.log('row7 logging')});
-// $row8.on('click', () =>{console.log('row8 logging')});
+//testing with console.logsssss --------------------------
+$row1.on('click', () =>{console.log('row1')});
+$row2.on('click', () =>{console.log('row2')});
+$row3.on('click', () =>{console.log('row3')});
+$row4.on('click', () =>{console.log('row4')});
+$row5.on('click', () =>{console.log('row5')});
+$row6.on('click', () =>{console.log('row6')});
+$row7.on('click', () =>{console.log('row7')});
 
-$classCircle.on('click', () =>{console.log($(event.currentTarget).id)});
-// $row2.on('click', () =>{console.log('row2 logging')});
-// $row3.on('click', () =>{console.log('row3 logging')});
-// $row4.on('click', () =>{console.log('row4 logging')});
-// $row5.on('click', () =>{console.log('row5 logging')});
-// $row6.on('click', () =>{console.log('row6 logging')});
-// $row7.on('click', () =>{console.log('row7 logging')});
+$classCircle.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 
 
+//Win cases
+// const winCases = [
+//   ['', '', '', ''];
 
 
 
