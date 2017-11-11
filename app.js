@@ -12,24 +12,24 @@ $(() => {
 
 
   //defining columns
-  const $row1 = $('<div>').addClass('row').attr('id', 'row1');
-  const $row2 = $('<div>').addClass('row').attr('id', 'row2');
-  const $row3 = $('<div>').addClass('row').attr('id', 'row3');
-  const $row4 = $('<div>').addClass('row').attr('id', 'row4');
-  const $row5 = $('<div>').addClass('row').attr('id', 'row5');
-  const $row6 = $('<div>').addClass('row').attr('id', 'row6');
-  const $row7 = $('<div>').addClass('row').attr('id', 'row7');
-  // const $row8 = $('<div>').addClass('row').attr('id', 'row8');
+  const $column1 = $('<div>').addClass('column').attr('id', 'column1');
+  const $column2 = $('<div>').addClass('column').attr('id', 'column2');
+  const $column3 = $('<div>').addClass('column').attr('id', 'column3');
+  const $column4 = $('<div>').addClass('column').attr('id', 'column4');
+  const $column5 = $('<div>').addClass('column').attr('id', 'column5');
+  const $column6 = $('<div>').addClass('column').attr('id', 'column6');
+  const $column7 = $('<div>').addClass('column').attr('id', 'column7');
+  const $column8 = $('<div>').addClass('column').attr('id', 'column8');
 
 //Adding rows to the gameboard---------------------
-  $gameBoard.append($row1);
-  $gameBoard.append($row2);
-  $gameBoard.append($row3);
-  $gameBoard.append($row4);
-  $gameBoard.append($row5);
-  $gameBoard.append($row6);
-  $gameBoard.append($row7);
-  // $gameBoard.append($row8);
+  $gameBoard.append($column1);
+  $gameBoard.append($column2);
+  $gameBoard.append($column3);
+  $gameBoard.append($column4);
+  $gameBoard.append($column5);
+  $gameBoard.append($column6);
+  $gameBoard.append($column7);
+  $gameBoard.append($column8);
 
   // make square grid - didn't work out----------------
   // for (let i = 0; i < 56; i++){
@@ -41,51 +41,51 @@ $(() => {
   // };
 
   //make row function----------------------
-const rows = (row) => {
-  for (let i = 0; i < 8; i++){
+const columns = (column) => {
+  for (let i = 0; i < 7; i++){
     let num = i + 1;
-    let id = 'column' + num;
+    let id = 'row' + num;
     // let rowClass = 'row' + num;
     id.toString();
-    let $column = $('<div>').addClass('circle').attr('id', id);
-    row.append($column);
+    let $row = $('<div>').addClass('circle').attr('id', id);
+    column.append($row);
     // $('.container').append($gameBoard);
     };
   };
 
-//Calling row formation functions-------------------
-rows($row1);
-rows($row2);
-rows($row3);
-rows($row4);
-rows($row5);
-rows($row6);
-rows($row7);
-// rows($row8);
+//Calling column formation functions-------------------
+columns($column1);
+columns($column2);
+columns($column3);
+columns($column4);
+columns($column5);
+columns($column6);
+columns($column7);
+columns($column8);
 
 
 //make basic logic------------------------
   const $classCircle = $('.circle');
 
    const playersTakeTurns = (event) => {
-     if($(event.currentTarget).css('background-color') !== 'red' || 'blue'){
+    //  if($(event.currentTarget).css('background-color' == 'pink')){----HELP
        if( alternate === true){
          $(event.currentTarget).css('background-color', 'red');
         //  $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px');
-         console.log("1");
+         console.log("Player1");
          //Show text Player 1, it's your turn!
          alternate = false;
        }else if(alternate === false){
          $(event.currentTarget).css('background-color', 'blue');
         //  $(event.currentTarget).text('2').css('color', 'blue').css('font-size', '10px');
-         console.log("2");
+         console.log("Player2");
          //Show text Player 2, it's your turn!
          alternate = true;
      }else{
          return false;
        };
      };
-   };
+  //  };
 
 
 
@@ -101,13 +101,13 @@ rows($row7);
 $classCircle.on('click', playersTakeTurns);
 
 //testing with console.logsssss --------------------------
-$row1.on('click', () =>{console.log('row1')});
-$row2.on('click', () =>{console.log('row2')});
-$row3.on('click', () =>{console.log('row3')});
-$row4.on('click', () =>{console.log('row4')});
-$row5.on('click', () =>{console.log('row5')});
-$row6.on('click', () =>{console.log('row6')});
-$row7.on('click', () =>{console.log('row7')});
+$column1.on('click', () =>{console.log('column1')});
+$column2.on('click', () =>{console.log('column2')});
+$column3.on('click', () =>{console.log('column3')});
+$column4.on('click', () =>{console.log('column4')});
+$column5.on('click', () =>{console.log('column5')});
+$column6.on('click', () =>{console.log('column6')});
+$column7.on('click', () =>{console.log('column7')});
 
 $classCircle.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 

@@ -18,6 +18,7 @@ h1 {
 }
 
 .gameBoard {
+
   border: 1px solid black;
   border-bottom: 15px solid black;
   border-left: 10px solid black;
@@ -26,8 +27,8 @@ h1 {
   width: 890px;
   box-sizing: border-box;
   margin: auto;
-  /*display: flex;
-  flex-direction: column;*/
+  display: flex;
+  flex-direction: row;
 }
 
 
@@ -66,6 +67,7 @@ h1 {
 }
 
 .row {
+  flex-direction: column;
   position: relative;
   /*top: -742px;*/
   z-index: 1;
