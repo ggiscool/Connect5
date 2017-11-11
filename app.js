@@ -70,16 +70,16 @@ columns($column8);
    const playersTakeTurns = (event) => {
     //  if($(event.currentTarget).css('background-color' == 'pink')){----HELP
     //EXPERIMENTING -----------------------
-  //   const $columns = $(event.currentTarget);
-  //   const $checkers = $column.children('.checker');
+    const $columns = $(event.currentTarget);
+    const $circles = $columns.children('.circle');
   // };
-  //     for (let i = ($circles.length - 1); i >= 0; i--) {
-  //         if ($circles.eq(i).children().length == 0) {
-  //             const $checker = $('<div>').addClass("checker");
-  //             // $circles.eq(i).append($checker);
-  //             // $checker.show('bounce','ease-in',900);
-  //           };
-  //         };
+      for (let i = ($circles.length - 1); i >= 0; i--) {
+          if ($circles.eq(i).children().length == 0) {
+              const $checker = $('<div>').addClass("checker");
+              // $circles.eq(i).append($checker);
+              // $checker.show();
+            };
+          };
       //Experimenting done----------------------------
        if( alternate === true){
          $(event.currentTarget).css('background-color', 'red');
