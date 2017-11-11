@@ -41,64 +41,66 @@ $(() => {
   // };
 
   //make row function----------------------
-const columns = (column) => {
+const assignColumns = (column) => {
   for (let i = 0; i < 7; i++){
     let num = i + 1;
     let id = 'row' + num;
     // let rowClass = 'row' + num;
     id.toString();
-    let $row = $('<div>').addClass('circle').attr('id', id);
-    column.append($row);
-    // $('.container').append($gameBoard);
+    let $circles = $('<div>').addClass('circle').attr('id', id);
+    column.append($circles);
     };
   };
 
 //Calling column formation functions-------------------
-columns($column1);
-columns($column2);
-columns($column3);
-columns($column4);
-columns($column5);
-columns($column6);
-columns($column7);
-columns($column8);
+assignColumns($column1);
+assignColumns($column2);
+assignColumns($column3);
+assignColumns($column4);
+assignColumns($column5);
+assignColumns($column6);
+assignColumns($column7);
+assignColumns($column8);
 
 
 //make basic logic------------------------
   const $circles = $('.circle');
 
    const playersTakeTurns = (event) => {
-    //  if($(event.currentTarget).css('background-color' == 'pink')){----HELP
-    //EXPERIMENTING -----------------------
-    const $columns = $(event.currentTarget);
-    const $circles = $columns.children('.circle');
-  // };
-      for (let i = ($circles.length - 1); i >= 0; i--) {
-          if ($circles.eq(i).children().length == 0) {
-              const $checker = $('<div>').addClass("checker");
-              // $circles.eq(i).append($checker);
-              // $checker.show();
-            };
-          };
-      //Experimenting done----------------------------
+
+     //EXPERIMENTING -----------------------
+     const $columns = $(event.currentTarget);
+     const $circles = $columns.children('.circle');
+   // };
+       for (let i = ($columns.length - 1); i >= 0; i--) {
+         console.log($columns.eq(i).length);
+           if ($columns.eq(i).children().length == 0) {
+           //   };
+           // }; --------------can be disconnected here into 2 sep fxns
+
+       //Experimenting done----------------------------
+     if(!$(event.currentTarget).attr('value')){
+       console.log(event.currentTarget);
+       // if ($circles.isBgColor('pink')) {
        if( alternate === true){
-         $(event.currentTarget).css('background-color', 'red');
-        //  $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px');
+         $(event.currentTarget).css('background-color', 'red').attr('value', 'clicked');
+         // $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px').css('text-align', 'center');
          console.log("Player1");
          //Show text Player 1, it's your turn!
          alternate = false;
        }else if(alternate === false){
-         $(event.currentTarget).css('background-color', 'blue');
-        //  $(event.currentTarget).text('2').css('color', 'blue').css('font-size', '10px');
+         $(event.currentTarget).css('background-color', 'blue').attr('value', 'clicked');
+         // $(event.currentTarget).text('2').css('color', 'blue').css('font-size', '10px').css('text-align', 'center');
          console.log("Player2");
          //Show text Player 2, it's your turn!
          alternate = true;
      }else{
          return false;
-       };
-     };
-  //  };
-
+           };
+          };
+        };
+      };
+    };
 
 
 
@@ -125,10 +127,11 @@ $circles.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 //   ['', '', '', ''];
 
 
-
+//Make a reset function to run when you start game
 
 
 
 
 
 });
+// });
