@@ -65,10 +65,22 @@ columns($column8);
 
 
 //make basic logic------------------------
-  const $classCircle = $('.circle');
+  const $circles = $('.circle');
 
    const playersTakeTurns = (event) => {
     //  if($(event.currentTarget).css('background-color' == 'pink')){----HELP
+    //EXPERIMENTING -----------------------
+  //   const $columns = $(event.currentTarget);
+  //   const $checkers = $column.children('.checker');
+  // };
+  //     for (let i = ($circles.length - 1); i >= 0; i--) {
+  //         if ($circles.eq(i).children().length == 0) {
+  //             const $checker = $('<div>').addClass("checker");
+  //             // $circles.eq(i).append($checker);
+  //             // $checker.show('bounce','ease-in',900);
+  //           };
+  //         };
+      //Experimenting done----------------------------
        if( alternate === true){
          $(event.currentTarget).css('background-color', 'red');
         //  $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px');
@@ -93,12 +105,8 @@ columns($column8);
 
 
 
-
-
-
-
 //Calling take turns function
-$classCircle.on('click', playersTakeTurns);
+$circles.on('click', playersTakeTurns);
 
 //testing with console.logsssss --------------------------
 $column1.on('click', () =>{console.log('column1')});
@@ -109,7 +117,7 @@ $column5.on('click', () =>{console.log('column5')});
 $column6.on('click', () =>{console.log('column6')});
 $column7.on('click', () =>{console.log('column7')});
 
-$classCircle.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
+$circles.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 
 
 //Win cases
@@ -123,4 +131,4 @@ $classCircle.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 
 
 
-})
+});
