@@ -1,35 +1,56 @@
 console.log("we have the meat$");
 
+
+// //defining columns
+// const $column1 = $('<div>').addClass('column').attr('id', 'column1');
+// const $column2 = $('<div>').addClass('column').attr('id', 'column2');
+// const $column3 = $('<div>').addClass('column').attr('id', 'column3');
+// const $column4 = $('<div>').addClass('column').attr('id', 'column4');
+// const $column5 = $('<div>').addClass('column').attr('id', 'column5');
+// const $column6 = $('<div>').addClass('column').attr('id', 'column6');
+// const $column7 = $('<div>').addClass('column').attr('id', 'column7');
+// const $column8 = $('<div>').addClass('column').attr('id', 'column8');
+//
+// //Adding rows to the gameboard---------------------
+// $gameBoard.append($column1);
+// $gameBoard.append($column2);
+// $gameBoard.append($column3);
+// $gameBoard.append($column4);
+// $gameBoard.append($column5);
+// $gameBoard.append($column6);
+// $gameBoard.append($column7);
+// $gameBoard.append($column8);
+
+
+const generateBoard = () =>
+{
+  const $gameBoard = $('<div>').addClass('gameBoard');
+  for (let i = 0; i < 8; i++)
+  {
+    const $column = $('<div>').addClass('column');
+    $column.attr('id', 'column' + (i + 1));
+    for ( let j = 0; j < 7; j++)
+    {
+      const $circle = $('<div>').addClass('circle');
+      $column.append($circle);
+    }
+    $gameBoard.append($column);
+  }
+  $('.container').append($gameBoard);
+}
+
+
 $(() => {
 
 //make game board
-  const $gameBoard = $('<div>').addClass('gameBoard');
   let alternate = true;
-  // let clicks = 0;
-  // const $player1 = $('<div>').addClass('playPiece1');
-  // const $player2 = $('<div>').addClass('playPiece2');
-  $('.container').append($gameBoard);
+
+  // const $gameBoard = $('<div>').addClass('gameBoard');
+  // const $circles = $('.circle');
+  // const $columns = $('<.column>');
+generateBoard();
 
 
-  //defining columns
-  const $column1 = $('<div>').addClass('column').attr('id', 'column1');
-  const $column2 = $('<div>').addClass('column').attr('id', 'column2');
-  const $column3 = $('<div>').addClass('column').attr('id', 'column3');
-  const $column4 = $('<div>').addClass('column').attr('id', 'column4');
-  const $column5 = $('<div>').addClass('column').attr('id', 'column5');
-  const $column6 = $('<div>').addClass('column').attr('id', 'column6');
-  const $column7 = $('<div>').addClass('column').attr('id', 'column7');
-  const $column8 = $('<div>').addClass('column').attr('id', 'column8');
-
-//Adding rows to the gameboard---------------------
-  $gameBoard.append($column1);
-  $gameBoard.append($column2);
-  $gameBoard.append($column3);
-  $gameBoard.append($column4);
-  $gameBoard.append($column5);
-  $gameBoard.append($column6);
-  $gameBoard.append($column7);
-  $gameBoard.append($column8);
 
   // make square grid - didn't work out----------------
   // for (let i = 0; i < 56; i++){
@@ -40,58 +61,73 @@ $(() => {
   //   // $('.container').append($gameBoard);
   // };
 
-  //make row function----------------------
-const assignColumns = (column) => {
-  for (let i = 0; i < 7; i++){
-    let num = i + 1;
-    let id = 'row' + num;
-    // let rowClass = 'row' + num;
-    id.toString();
-    let $circles = $('<div>').addClass('circle').attr('id', id);
-    column.append($circles);
-    };
-  };
+  //make row function----------------------OBSOLETE
+// const assignColumns = (column) => {
+//   for (let i = 0; i < 7; i++){
+//     let num = i + 1;
+//     let id = 'row' + num;
+//     // let rowClass = 'row' + num;
+//     id.toString();
+//     let $circles = $('<div>').addClass('circle').attr('id', id);
+//     column.append($circles);
+//     };
+//   };
+//
+// //Calling column formation functions-------------------OBSOLETE
+// assignColumns($column1);
+// assignColumns($column2);
+// assignColumns($column3);
+// assignColumns($column4);
+// assignColumns($column5);
+// assignColumns($column6);
+// assignColumns($column7);
+// assignColumns($column8);
 
-//Calling column formation functions-------------------
-assignColumns($column1);
-assignColumns($column2);
-assignColumns($column3);
-assignColumns($column4);
-assignColumns($column5);
-assignColumns($column6);
-assignColumns($column7);
-assignColumns($column8);
+
+//defining additional variables
 
 
 //make basic logic------------------------
-  const $circles = $('.circle');
-
    const playersTakeTurns = (event) => {
 
      //EXPERIMENTING -----------------------
-     const $columns = $(event.currentTarget);
-     const $circles = $columns.children('.circle');
-   // };
-       for (let i = ($columns.length - 1); i >= 0; i--) {
-         console.log($columns.eq(i).length);
-           if ($columns.eq(i).children().length == 0) {
-           //   };
-           // }; --------------can be disconnected here into 2 sep fxns
+    const $columns = $(event.currentTarget).parent();
+    //
+    // const $circles = $(event.currentTarget);
+//I want to add the circles as children of teh columns they're in, so when you click the column, the bottom-most non-'clicked' circle will change color
+  //line below is correct
+       for (let i = ($columns.children().length - 1); i >= 0; i--) {
+         // console.log('$columns.eq(i)', $columns.eq(i));
+         console.log('i', i);
+         // if($(event.currentTarget).attr('value')){
+          //run fxn below
+          //make loop around 'test', use line 86 syntax
+          const $test = $(event.currentTarget).parent().children();
+            for (let i = $test[6]; i >= 0; i--){
 
+              if($test[i].attr('value')){
+                //move to i--
+                //run for (let i = $test[6]; i >= 0; i--){ again
+
+               //run fxn below
+
+          }
+        }
+             //correct below
+             console.log('event.target', $test[6]);
+
+           //   };// }; --------------can be disconnected here into 2 sep fxns
        //Experimenting done----------------------------
+
      if(!$(event.currentTarget).attr('value')){
-       console.log(event.currentTarget);
-       // if ($circles.isBgColor('pink')) {
        if( alternate === true){
          $(event.currentTarget).css('background-color', 'red').attr('value', 'clicked');
-         // $(event.currentTarget).text('1').css('color', 'red').css('font-size', '10px').css('text-align', 'center');
-         console.log("Player1");
+         // console.log("Player1");
          //Show text Player 1, it's your turn!
          alternate = false;
        }else if(alternate === false){
          $(event.currentTarget).css('background-color', 'blue').attr('value', 'clicked');
-         // $(event.currentTarget).text('2').css('color', 'blue').css('font-size', '10px').css('text-align', 'center');
-         console.log("Player2");
+         // console.log("Player2");
          //Show text Player 2, it's your turn!
          alternate = true;
      }else{
@@ -100,7 +136,7 @@ assignColumns($column8);
           };
         };
       };
-    };
+    // };
 
 
 
@@ -108,7 +144,7 @@ assignColumns($column8);
 
 
 //Calling take turns function
-$circles.on('click', playersTakeTurns);
+$('.circle').on('click', playersTakeTurns);
 
 //testing with console.logsssss --------------------------
 $column1.on('click', () =>{console.log('column1')});
@@ -119,12 +155,18 @@ $column5.on('click', () =>{console.log('column5')});
 $column6.on('click', () =>{console.log('column6')});
 $column7.on('click', () =>{console.log('column7')});
 
-$circles.on('click', () =>{console.log($(event.currentTarget).attr('id'))});
+$('.circle').on('click', () =>{console.log($(event.currentTarget).attr('id'))});
 
 
 //Win cases
 // const winCases = [
 //   ['', '', '', ''];
+
+//Prompt who wins
+
+//Keep score of who wins each of 3 rounds
+
+
 
 
 //Make a reset function to run when you start game
