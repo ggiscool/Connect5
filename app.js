@@ -1,7 +1,7 @@
 console.log("we have the meat$");
 
 
-// //defining columns
+// //defining columns----------------OBSOLETE
 // const $column1 = $('<div>').addClass('column').attr('id', 'column1');
 // const $column2 = $('<div>').addClass('column').attr('id', 'column2');
 // const $column3 = $('<div>').addClass('column').attr('id', 'column3');
@@ -11,7 +11,7 @@ console.log("we have the meat$");
 // const $column7 = $('<div>').addClass('column').attr('id', 'column7');
 // const $column8 = $('<div>').addClass('column').attr('id', 'column8');
 //
-// //Adding rows to the gameboard---------------------
+// //Adding rows to the gameboard-------------OBSOLETE
 // $gameBoard.append($column1);
 // $gameBoard.append($column2);
 // $gameBoard.append($column3);
@@ -21,9 +21,10 @@ console.log("we have the meat$");
 // $gameBoard.append($column7);
 // $gameBoard.append($column8);
 
-
+//Define variables-----------------------------------------------
   let alternate = true;
 
+//Function making the game board, columns, and circles--------------
 const generateBoard = () =>
 {
   const $gameBoard = $('<div>').addClass('gameBoard');
@@ -41,74 +42,72 @@ const generateBoard = () =>
   $('.container').append($gameBoard);
 }
 
-//make basic logic------------------------
+//Function that plays a piece at the bottom of the column clicked----------
 const playersTakeTurns = (event) => {
 
-  //EXPERIMENTING -----------------------
   const $columns = $(event.currentTarget).parent();
   const $test = $columns.children();
-  //
-  // const $circles = $(event.currentTarget);
-  //I want to add the circles as children of teh columns they're in, so when you click the column, the bottom-most non-'clicked' circle will change color
   //line below is correct
   for (let i = ($columns.children().length - 1); i >= 0; i--) {
     // console.log('$columns.eq(i)', $columns.eq(i));
     console.log('i', i);
-    // if($(event.currentTarget).attr('value')){
-    //run fxn below
-    //make loop around 'test', use line 86 syntax
-
     // for (let i = $test[6]; i >= 0; i--){
 
-
+    //If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
     if(!$test.eq(i).attr('value')){
       if( alternate === true){
         $test.eq(i).css('background-color', 'red').attr('value', 'clicked');
         // console.log("Player1");
         //Show text Player 1, it's your turn!
         alternate = false;
+        //call checkWin fxn
         return 0;
       }else if(alternate === false){
         $test.eq(i).css('background-color', 'blue').attr('value', 'clicked');
         // console.log("Player2");
         //Show text Player 2, it's your turn!
         alternate = true;
+        //call checkWin fxn
         return 0;
       }
 
 
       if($test.eq(i).attr('value')){
-        //move to i--
-        //run for (let i = $test[6]; i >= 0; i--){ again
-
-        //run fxn below
 
       }
     }
     //correct below
     console.log('event.target', $test[6]);
 
-    //   };// }; --------------can be disconnected here into 2 sep fxns
-    //Experimenting done----------------------------
-
 
   }
 }
+//Pseudocode for the rest of the game------------------------
+//Win cases
+// const winCases = [
+//   ['', '', '', ''];
+
+//Prompt who wins
+
+//Keep score of who wins each of 3 rounds
 
 
+
+//Make a reset function to run when you start game
+
+//End pseudocode----------------------------------------------
+
+//WIndows Onload
 $(() => {
 
-  //make game board
-
-
-  // const $gameBoard = $('<div>').addClass('gameBoard');
-  // const $circles = $('.circle');
-  // const $columns = $('<.column>');
+  //Call the fxn to make the game board
   generateBoard();
 
 
   $('.circle').on('click', playersTakeTurns);
-  // make square grid - didn't work out----------------
+
+  });
+  // make square grid ----------------OBSOLETE
   // for (let i = 0; i < 56; i++){
   //   let id = i + 1;
   //   id.toString();
@@ -140,22 +139,17 @@ $(() => {
   // assignColumns($column8);
 
 
-  //defining additional variables
-
-
-
-});
-// };
-
-
 
 
 
 
 //Calling take turns function
 $('.circle').on('click', playersTakeTurns);
+
+
+
 //
-// //testing with console.logsssss --------------------------
+// //testing with console.logsssss -----------------------OBSOLETE
 // $('#column1').on('click', () =>{console.log('column1')});
 // $('#column2').on('click', () =>{console.log('column2')});
 // $('#column3').on('click', () =>{console.log('column3')});
@@ -165,24 +159,3 @@ $('.circle').on('click', playersTakeTurns);
 // $('#column7').on('click', () =>{console.log('column7')});
 
 // $('.circle').on('click', () =>{console.log($(event.currentTarget).attr('id'))});
-
-
-//Win cases
-// const winCases = [
-//   ['', '', '', ''];
-
-//Prompt who wins
-
-//Keep score of who wins each of 3 rounds
-
-
-
-
-//Make a reset function to run when you start game
-
-
-
-
-
-// });
-// });
