@@ -21,8 +21,9 @@ console.log("we have the meat$");
 // $gameBoard.append($column7);
 // $gameBoard.append($column8);
 
-//Define variables-----------------------------------------------
+//Define initial variables-----------------------------------------------
   let alternate = true;
+  let gameEnd = false;
 
 //Function making the game board, columns, and circles--------------
 const generateBoard = () =>
@@ -35,6 +36,7 @@ const generateBoard = () =>
     for ( let j = 0; j < 7; j++)
     {
       const $circle = $('<div>').addClass('circle');
+      $circle.attr('id', 'column' + (i + 1) + 'row' + (j + 1));
       $column.append($circle);
     }
     $gameBoard.append($column);
@@ -48,44 +50,80 @@ const playersTakeTurns = (event) => {
   const $columns = $(event.currentTarget).parent();
   const $test = $columns.children();
   //line below is correct
-  for (let i = ($columns.children().length - 1); i >= 0; i--) {
+  for (let i = ($test.length - 1); i >= 0; i--) {
     // console.log('$columns.eq(i)', $columns.eq(i));
-    console.log('i', i);
+    // console.log('i', i);
     // for (let i = $test[6]; i >= 0; i--){
 
     //If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
     if(!$test.eq(i).attr('value')){
       if( alternate === true){
-        $test.eq(i).css('background-color', 'red').attr('value', 'clicked');
+        $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed');
         // console.log("Player1");
         //Show text Player 1, it's your turn!
         alternate = false;
         //call checkWin fxn
+
+        //check right
+
+          //if no wins in 56 clicks, prompt as stalemate
+          //while clicked val class === clicked val class, increase counts by 1
+
+
+        //check left
         return 0;
+
       }else if(alternate === false){
-        $test.eq(i).css('background-color', 'blue').attr('value', 'clicked');
+        $test.eq(i).css('background-color', 'blue').attr('value', 'clickedBlue');
         // console.log("Player2");
         //Show text Player 2, it's your turn!
         alternate = true;
         //call checkWin fxn
+        //if no wins in 56 clicks, prompt as stalemate
         return 0;
-      }
-
-
-      if($test.eq(i).attr('value')){
-
-      }
-    }
+        };
+      };
+    };
     //correct below
-    console.log('event.target', $test[6]);
+    // console.log('event.target', $test[6]);
 
 
   }
-}
+// }
+
+//Check for wins
+// const checkWinsLR = () => {
+//     while(gameEnd = false) {
+//       for(let i = 0; i < 9; i++) {
+//         let $currentId = test.eq(i);
+//         let $coordinates = currentId.split('column')[1].split('row');
+//         let $newCoordinate = [coordinates[0] - 1, coordinates[1]];
+//         let $newId = 'column' + newCoordinate[0] + 'row' + newCoordinate[1];
+//         let $sideId = $('#' + newId);
+//
+//             if($currentId.attr('value')) === $sideId.attr('value'){
+//
+//
+//
+//           };
+//         };
+//       };
+//
+//   const checkWinsUD () => {
+//
+//   }
+//   const checkWinDR () => {
+//
+//   }
+//   const checkWinDL () => {
+//
+//   };
+// };
+
 //Pseudocode for the rest of the game------------------------
 //Win cases
 // const winCases = [
-//   ['', '', '', ''];
+//   ['', '', '', '', ];
 
 //Prompt who wins
 
@@ -105,6 +143,9 @@ $(() => {
 
 
   $('.circle').on('click', playersTakeTurns);
+
+  // console.log($(event.currentTarget));
+
 
   });
   // make square grid ----------------OBSOLETE
@@ -144,7 +185,8 @@ $(() => {
 
 
 //Calling take turns function
-$('.circle').on('click', playersTakeTurns);
+// $('.circle').on('click', playersTakeTurns);
+
 
 
 
