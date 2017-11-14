@@ -49,28 +49,21 @@ const playersTakeTurns = (event) => {
 
   const $columns = $(event.currentTarget).parent();
   const $test = $columns.children();
-  //line below is correct
   for (let i = ($test.length - 1); i >= 0; i--) {
-    // console.log('$columns.eq(i)', $columns.eq(i));
-    // console.log('i', i);
-    // for (let i = $test[6]; i >= 0; i--){
 
-    //If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
+//If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
     if(!$test.eq(i).attr('value')){
       if( alternate === true){
         $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed');
         // console.log("Player1");
         //Show text Player 1, it's your turn!
         alternate = false;
-        //call checkWin fxn
 
-        //check right
+//call checkWin fxn------------------------
 
+  checkWinsLR($test, i);
           //if no wins in 56 clicks, prompt as stalemate
           //while clicked val class === clicked val class, increase counts by 1
-
-
-        //check left
         return 0;
 
       }else if(alternate === false){
@@ -78,52 +71,90 @@ const playersTakeTurns = (event) => {
         // console.log("Player2");
         //Show text Player 2, it's your turn!
         alternate = true;
-        //call checkWin fxn
+//call checkWin fxn-------------------------------
+        checkWinsLR($test, i);
         //if no wins in 56 clicks, prompt as stalemate
         return 0;
         };
       };
     };
-    //correct below
-    // console.log('event.target', $test[6]);
-
-
-  }
+  };
 // }
 
-//Check for wins
-// const checkWinsLR = () => {
-//     while(gameEnd = false) {
-//       for(let i = 0; i < 9; i++) {
-//         let $currentId = test.eq(i);
-//         let $coordinates = currentId.split('column')[1].split('row');
-//         let $newCoordinate = [coordinates[0] - 1, coordinates[1]];
-//         let $newId = 'column' + newCoordinate[0] + 'row' + newCoordinate[1];
-//         let $sideId = $('#' + newId);
-//
-//             if($currentId.attr('value')) === $sideId.attr('value'){
-//
-//
-//
-//           };
-//         };
-//       };
-//
-//   const checkWinsUD () => {
+
+
+//Check Win fxn----------------------------------------------
+const checkWinsLR = ($test, i) => {
+  //CHECK TO THE LEFT
+    let $loopCount = 0;
+    let $currentElem = $test.eq(i);
+    let $coordinates = $currentElem.attr('id').split('column')[1].split('row');
+    let $newCoordinate = [$coordinates[0] - 1, $coordinates[1]];
+    let $newId = 'column' + $newCoordinate[0] + 'row' + $newCoordinate[1];
+    let $sideElem = $('#' + $newId);
+    let top = 0;
+    console.log($currentElem.attr('value'));
+        while($currentElem.attr('value')  === $sideElem.attr('value')) {
+          $currentElem = $sideElem;
+          $coordinates = $currentElem.attr('id').split('column')[1].split('row');
+          $newCoordinate = [$coordinates[0] - 1, $coordinates[1]];
+          $newId = 'column' + $newCoordinate[0] + 'row' + $newCoordinate[1];
+          $sideElem = $('#' + $newId);
+          $loopCount++;
+          //Infinite loop prevention
+          top++;
+          if(top > 10){
+            break;
+          };
+          console.log('current', $currentElem);
+          console.log('inside of left while loop');
+        };
+          console.log('loopcount left', $loopCount);
+
+        //CHECK TO THE RIGHT
+      $currentElem = $test.eq(i);
+      $coordinates = $currentElem.attr('id').split('column')[1].split('row');
+      $newCoordinate = [$coordinates[0] + 1, $coordinates[1]];
+      $newId = 'column' + $newCoordinate[0] + 'row' + $newCoordinate[1];
+      $sideElem = $('#' + $newId);
+      top = 0;
+      console.log($currentElem.attr('value'), $sideElem.attr('value'));
+      console.log($sideElem);
+      console.log($newId);
+          while($currentElem.attr('value')  === $sideElem.attr('value')) {
+            $currentElem = $sideElem;
+            $coordinates = $currentElem.attr('id').split('column')[1].split('row');
+            $newCoordinate = [$coordinates[0] + 1, $coordinates[1]];
+            $newId = 'column' + $newCoordinate[0] + 'row' + $newCoordinate[1];
+            $sideElem = $('#' + $newId);
+            $loopCount++;
+            //infinite loop prevention
+            top++;
+            if(top > 10){
+              break;
+            };
+            console.log('current', $currentElem);
+            console.log('inside of right while loop');
+          };
+          console.log('loopcount right', $loopCount);
+
+    };
+//-------------------------------------------------
+
+//   const checkWinsUD = () => {
 //
 //   }
-//   const checkWinDR () => {
+//   const checkWinDR = () => {
 //
 //   }
-//   const checkWinDL () => {
+//   const checkWinDL = () => {
 //
 //   };
 // };
 
 //Pseudocode for the rest of the game------------------------
 //Win cases
-// const winCases = [
-//   ['', '', '', '', ];
+
 
 //Prompt who wins
 
