@@ -1,15 +1,57 @@
 body {
-  background: url("http://i.imgur.com/CMWTqJx.jpg?1");
+  /*background: url("http://i.imgur.com/CMWTqJx.jpg?1");
   background-color: rgba(238, 238, 238, 0.81) !important;
-  background-blend-mode: color;
+  background-blend-mode: color;*/
   text-align: center;
+  background: linear-gradient(270deg, #b8e0f7, #f3d8f7);
+  background-size: 600% 600%;
+  animation: GradientFlow 15s ease infinite;
+}
+  @keyframes GradientFlow {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
   }
+
 
 h1 {
   font-family: 'Abril Fatface', cursive;
   font-size: 60px;
-  padding: 10px;
+  /*padding-top: 10px;*/
   margin: auto;
+  letter-spacing: 3px;
+}
+.turnBox {
+  height: 20px;
+  width: 500px;
+  /*box-sizing: border-box;*/
+  margin: auto;
+  padding-bottom: 10px;
+  display: flex;
+  /*line-height: 50%;*/
+
+}
+.player1Turn {
+  display: block;
+  font: red;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 15px;
+  margin: auto;
+}
+.player2Turn {
+  display: none;
+  font: blue;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 15px;
+  margin: auto;
+}
+
+.youWin {
+  display: none;
+  font-size: 500px;
+  font-family: 'Abril Fatface', cursive;
+  position: relative;
+  z-index: 2;
 }
 .container {
   border: 1px solid purple;
@@ -19,10 +61,10 @@ h1 {
 
 .gameBoard {
 
-  border: 1px solid black;
-  border-bottom: 15px solid black;
-  border-left: 10px solid black;
-  border-right: 10px solid black;
+  border: 2px solid silver;
+  border-bottom: 15px solid white;
+  border-left: 10px solid white;
+  border-right: 10px solid white;
   height: 800px;
   width: 890px;
   box-sizing: border-box;
@@ -31,22 +73,6 @@ h1 {
   flex-direction: row;
 }
 
-
-/*//square grid*/
-/*.square {
-  border: 3px solid white;
-  height: 100px;
-  width: 100px;
-  display: inline-block;
-  background-color: pink;
-  /*float: left;*/
-  /*font-size: 60px;
-  text-align: center;*/
-  /*vertical-align: middle;*/
-  /*top: -742px;*/
-  /*position: static;
-  z-index: 0;
-}*/
 
 
 /*circle grid*/
@@ -62,13 +88,5 @@ h1 {
   vertical-align: left;
   border-radius: 60px;
   position: relative;
-  /*top: -742px;*/
   z-index: 1;
 }
-
-/*.row {
-  flex-direction: column;
-  position: relative;
-  /*top: -742px;*/
-  /*z-index: 1;
-}*/

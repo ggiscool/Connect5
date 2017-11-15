@@ -2,7 +2,12 @@ console.log("we have the meat$");
 
 //Define initial variables-----------------------------------------------
   let alternate = true;
+  const $youWin = $('<div>').addClass('youWin').text('YOU WIN GREAT JOB');
+  // const $turnBox = $('<div>').addClass('turnBox');
+  const $player1Turn = $('<div>').addClass('player1Turn').text('Player 1, it\'s your turn!');
+  const $player2Turn = $('<div>').addClass('player2Turn').text('Player 2, it\'s your turn!');
   const $resetButton = $('#RESET');
+
 
 
 //Function making the game board, columns, and circles--------------
@@ -38,7 +43,9 @@ const playersTakeTurns = (event) => {
       if( alternate === true){
         $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed').attr('player', 'Player 1');
         // console.log("Player1");
-        //Show text Player 1, it's your turn!
+        $player1Turn.css('display', 'none');
+        $player2Turn.css('display', 'block');
+
         alternate = false;
 
         //call checkWin fxns------------------------
@@ -62,7 +69,8 @@ const playersTakeTurns = (event) => {
       }else if(alternate === false){
         $test.eq(i).css('background-color', 'blue').attr('value', 'clickedBlue').attr('player', 'Player 2');
         // console.log("Player2");
-        //Show text Player 2, it's your turn!
+        $player2Turn.css('display', 'none');
+        $player1Turn.css('display', 'block');
         alternate = true;
         //call checkWin fxns-------------------------------
         checkWinsL($test, i, $circle);
@@ -180,6 +188,7 @@ const checkWinsR = ($test, i, $circle) => {
       if (($loopCountL + $loopCountR) >= 4){
         // prompt($test.eq(i).attr('player') + "wins!");
         console.log('winner winner!');
+        $youWin.css('display', 'block');
       };
     };
 //-------------------------------------------------
@@ -254,6 +263,7 @@ const checkWinsD = ($test, i, $circle) => {
       if (($loopCountU + $loopCountD) >= 4){
         // prompt($test.eq(i) + "wins!")
         console.log('winner winner!');
+        $youWin.css('display', 'block');
       };
     };
 
@@ -264,7 +274,7 @@ const checkWinsDRU = ($test, i, $circle) => {
     $loopCountDRU = 0;
     let $currentElem = $test.eq(i);
     let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
-    let $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) + 1];
+    let $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) - 1];
     let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1]; //ID for circle to the left of clicked
     let $sideElem = $('#' + $newId);//full element to the left of clicked
     let top = 0;
@@ -276,10 +286,11 @@ const checkWinsDRU = ($test, i, $circle) => {
           $currentElem = $sideElem;
           // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
           $coordinatesArr = $newCoordinateArr;
-          $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) + 1];
+          $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) - 1];
           $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
           $sideElem = $('#' + $newId);
           console.log($sideElem);
+          console.log('inside diagonal right up loop');
 
           $loopCountDRU++;
           //Infinite loop prevention
@@ -297,7 +308,7 @@ const checkWinsDLD = ($test, i, $circle) => {
         $loopCountDLD = 0;
         let $currentElem = $test.eq(i);
         let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
-        let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) - 1];
+        let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
         let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
         let $sideElem = $('#' + $newId);
         let top = 0;
@@ -309,10 +320,12 @@ const checkWinsDLD = ($test, i, $circle) => {
               $currentElem = $sideElem;
               // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
               $coordinatesArr = $newCoordinateArr;
-              $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) - 1];
+              $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
               $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
               $sideElem = $('#' + $newId);
               console.log($sideElem);
+              console.log('inside diagonal left down loop');
+
 
               $loopCountDLD++;
               //Infinite loop prevention
@@ -329,6 +342,7 @@ const checkWinsDLD = ($test, i, $circle) => {
       if (($loopCountDRU + $loopCountDLD) >= 4){
         // prompt($test.eq(i) + "wins!")
         console.log('winner winner!');
+        $youWin.css('display', 'block');
       };
     };
 
@@ -338,7 +352,7 @@ const checkWinsDLD = ($test, i, $circle) => {
       $loopCountDLU = 0;
       let $currentElem = $test.eq(i);
       let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
-      let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
+      let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) - 1];
       let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1]; //ID for circle to the left of clicked
       let $sideElem = $('#' + $newId);//full element to the left of clicked
       let top = 0;
@@ -350,10 +364,11 @@ const checkWinsDLD = ($test, i, $circle) => {
             $currentElem = $sideElem;
             // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
             $coordinatesArr = $newCoordinateArr;
-            $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
+            $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) - 1];
             $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
             $sideElem = $('#' + $newId);
             console.log($sideElem);
+            console.log('inside diagonal left up loop');
 
             $loopCountDLU++;
             //Infinite loop prevention
@@ -371,7 +386,7 @@ const checkWinsDLD = ($test, i, $circle) => {
           $loopCountDRD = 0;
           let $currentElem = $test.eq(i);
           let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
-          let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
+          let $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) + 1];
           let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
           let $sideElem = $('#' + $newId);
           let top = 0;
@@ -383,10 +398,11 @@ const checkWinsDLD = ($test, i, $circle) => {
                 $currentElem = $sideElem;
                 // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
                 $coordinatesArr = $newCoordinateArr;
-                $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, parseInt($coordinatesArr[1]) + 1];
+                $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, parseInt($coordinatesArr[1]) + 1];
                 $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
                 $sideElem = $('#' + $newId);
                 console.log($sideElem);
+                console.log('inside diagonal right dwon loop');
 
                 $loopCountDRD++;
                 //Infinite loop prevention
@@ -402,6 +418,7 @@ const checkWinsDLD = ($test, i, $circle) => {
         console.log($loopCountDLU, $loopCountDRD);
         if (($loopCountDLU + $loopCountDRD) >= 4){
           console.log('winner winner!');
+          $youWin.css('display', 'block');
           // prompt($test.eq(i) + "wins!")
         };
       };
@@ -413,15 +430,25 @@ const checkWinsDLD = ($test, i, $circle) => {
 //Make a reset function to run when you start game
 
 //End pseudocode----------------------------------------------
-
 //Windows Onload
 $(() => {
+  $('.turnBox').append($player1Turn);
+  $('.turnBox').append($player2Turn);
+
 
   //Call the fxn to make the game board
   generateBoard();
 
+//Show that someone won
+$('.gameBoard').append($youWin);
+
   //Run game logic fxn when circles are clicked
   $('.circle').on('click', playersTakeTurns);
 
+//Reset page by refresh
+  $('#RESET').on('click',() =>{
+    location.reload()
+    console.log('trying to reset');
+  });
 
   });
