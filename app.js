@@ -36,7 +36,7 @@ const playersTakeTurns = (event) => {
 //If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
     if(!$test.eq(i).attr('value')){
       if( alternate === true){
-        $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed');
+        $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed').attr('player', 'Player 1');
         // console.log("Player1");
         //Show text Player 1, it's your turn!
         alternate = false;
@@ -60,7 +60,7 @@ const playersTakeTurns = (event) => {
         return 0;
 
       }else if(alternate === false){
-        $test.eq(i).css('background-color', 'blue').attr('value', 'clickedBlue');
+        $test.eq(i).css('background-color', 'blue').attr('value', 'clickedBlue').attr('player', 'Player 2');
         // console.log("Player2");
         //Show text Player 2, it's your turn!
         alternate = true;
@@ -178,6 +178,7 @@ const checkWinsR = ($test, i, $circle) => {
     const checkLoopsLR = () => {
       console.log($loopCountL, $loopCountR);
       if (($loopCountL + $loopCountR) >= 4){
+        // prompt($test.eq(i).attr('player') + "wins!");
         console.log('winner winner!');
       };
     };
@@ -251,6 +252,7 @@ const checkWinsD = ($test, i, $circle) => {
     const checkLoopsUD = () => {
       console.log($loopCountU, $loopCountD);
       if (($loopCountU + $loopCountD) >= 4){
+        // prompt($test.eq(i) + "wins!")
         console.log('winner winner!');
       };
     };
@@ -325,6 +327,7 @@ const checkWinsDLD = ($test, i, $circle) => {
     const checkLoopsDRUDLD = () => {
       console.log($loopCountDRU, $loopCountDLD);
       if (($loopCountDRU + $loopCountDLD) >= 4){
+        // prompt($test.eq(i) + "wins!")
         console.log('winner winner!');
       };
     };
@@ -399,6 +402,7 @@ const checkWinsDLD = ($test, i, $circle) => {
         console.log($loopCountDLU, $loopCountDRD);
         if (($loopCountDLU + $loopCountDRD) >= 4){
           console.log('winner winner!');
+          // prompt($test.eq(i) + "wins!")
         };
       };
 
