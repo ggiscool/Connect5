@@ -65,6 +65,11 @@ const playersTakeTurns = (event) => {
 
         checkWinsL($test, i, $circle);
         checkWinsR($test, i, $circle);
+        checkLoopsLR();
+        // checkWinsU($test, i, $circle);
+        // checkWinsD($test, i, $circle);
+        // checkLoopsUD();
+
           //if no wins in 56 clicks, prompt as stalemate
           //while clicked val class === clicked val class, increase counts by 1
         return 0;
@@ -77,6 +82,10 @@ const playersTakeTurns = (event) => {
 //call checkWin fxn-------------------------------
         checkWinsL($test, i, $circle);
         checkWinsR($test, i, $circle);
+        checkLoopsLR();
+        // checkWinsU($test, i, $circle);
+        // checkWinsD($test, i, $circle);
+        // checkLoopsUD();
         //if no wins in 56 clicks, prompt as stalemate
         return 0;
         };
@@ -87,20 +96,37 @@ const playersTakeTurns = (event) => {
 
 
 //Check Win fxn----------------------------------------------
+//Left & Right
+let $loopCountL = 0;
+let $loopCountR = 0;
+
+//Up & Down
+let $loopCountU = 0;
+let $loopCountD = 0;
+
+//Diagonal Right
+let $loopCountDRU = 0;
+let $loopCountDRD = 0;
+
+//Diagonal Left
+let $loopCountDLU = 0;
+let $loopCountDLD = 0;
+
+
+//CHECKS SECTOR 1
+//CHECK TO THE LEFT-----------------------------
 const checkWinsL = ($test, i, $circle) => {
-  //CHECK TO THE LEFT-----------------------------
-    let $loopCount = 0;
+    $loopCountL = 0;
     let $currentElem = $test.eq(i);
     let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
     let $newCoordinateArr = [parseInt($coordinatesArr[0]) - 1, $coordinatesArr[1]];
-    let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
-    let $sideElem = $('#' + $newId);
+    let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1]; //ID for circle to the left of clicked
+    let $sideElem = $('#' + $newId);//full element to the left of clicked
     let top = 0;
     console.log($currentElem.attr('value'));
-    console.log($newId);
+    console.log('to the left', $newId);
     console.log($sideElem);
-        while($currentElem.attr('value')  === $sideElem.attr('value')) {
-          console.log($sideElem);
+        while($currentElem.attr('value')  === $sideElem.attr('value')) { //while clicked element and to the left are the same color
           $currentElem = $sideElem;
           // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
           $coordinatesArr = $newCoordinateArr;
@@ -109,7 +135,7 @@ const checkWinsL = ($test, i, $circle) => {
           $sideElem = $('#' + $newId);
           console.log($sideElem);
 
-          $loopCount++;
+          $loopCountL++;
           //Infinite loop prevention
           top++;
           if(top > 10){
@@ -118,24 +144,22 @@ const checkWinsL = ($test, i, $circle) => {
           console.log('current', $currentElem);
           console.log('inside of left while loop');
         };
-          console.log('loopcount left', $loopCount);
+          console.log('loopcount left', $loopCountL);
         };
 
+//CHECK TO THE RIGHT---------------------------------
 const checkWinsR = ($test, i, $circle) => {
-        //CHECK TO THE RIGHT---------------------------------
-        let $loopCount = 0;
+        $loopCountR = 0;
         let $currentElem = $test.eq(i);
         let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
         let $newCoordinateArr = [parseInt($coordinatesArr[0]) + 1, $coordinatesArr[1]];
         let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
         let $sideElem = $('#' + $newId);
         let top = 0;
-        console.log($currentElem.attr('value'));
-        console.log($newId);
+        console.log('to the right', $newId);
         console.log($sideElem);
 
             while($currentElem.attr('value')  === $sideElem.attr('value')) {
-              console.log($sideElem);
               $currentElem = $sideElem;
               // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
               $coordinatesArr = $newCoordinateArr;
@@ -144,7 +168,7 @@ const checkWinsR = ($test, i, $circle) => {
               $sideElem = $('#' + $newId);
               console.log($sideElem);
 
-              $loopCount++;
+              $loopCountR++;
               //Infinite loop prevention
               top++;
               if(top > 10){
@@ -153,11 +177,85 @@ const checkWinsR = ($test, i, $circle) => {
               console.log('current', $currentElem);
               console.log('inside of right while loop');
             };
-          console.log('loopcount right', $loopCount);
+          console.log('loopcount right', $loopCountR);
         };
-    // };
+    const checkLoopsLR = () => {
+      console.log($loopCountL, $loopCountR);
+      if (($loopCountL + $loopCountR) >= 4){
+        console.log('winner winner!');
+      };
+    };
 //-------------------------------------------------
-
+//CHECKS SECTOR 2
+//CHECK TO THE UP----------------------------------
+// const checkWinsU = ($test, i, $circle) => {
+//     $loopCountU = 0;
+//     let $currentElem = $test.eq(i);
+//     let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
+//     let $newCoordinateArr = [$coordinatesArr[0], parseInt($coordinatesArr[1]) + 1];
+//     let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1]; //ID for circle to the left of clicked
+//     let $sideElem = $('#' + $newId);//full element to the left of clicked
+//     let top = 0;
+//     console.log($currentElem.attr('value'));
+//     console.log('to the left', $newId);
+//     console.log($sideElem);
+//         while($currentElem.attr('value')  === $sideElem.attr('value')) {//while clicked element & left are the same color
+//           $currentElem = $sideElem;
+//           // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
+//           $coordinatesArr = $newCoordinateArr;
+//           $newCoordinateArr = [$coordinatesArr[0], [parseInt($coordinatesArr[1])] + 1];
+//           $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
+//           $sideElem = $('#' + $newId);
+//           console.log($sideElem);
+//
+//           $loopCountU++;
+//           //Infinite loop prevention
+//           top++;
+//           if(top > 10){
+//             break;
+//           };
+//           console.log('current', $currentElem);
+//         };
+//           console.log('loopcount up', $loopCountU);
+//         };
+//
+// //CHECK TO THE DOWN---------------------------------
+// const checkWinsD = ($test, i, $circle) => {
+//         $loopCountD = 0;
+//         let $currentElem = $test.eq(i);
+//         let $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
+//         let $newCoordinateArr = [$coordinatesArr[0], [parseInt($coordinatesArr[1])] - 1];
+//         let $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
+//         let $sideElem = $('#' + $newId);
+//         let top = 0;
+//         console.log('to the right', $newId);
+//         console.log($sideElem);
+//
+//             while($currentElem.attr('value')  === $sideElem.attr('value')) {
+//               $currentElem = $sideElem;
+//               // $coordinatesArr = [$circle.attr('column'), $circle.attr('row')];
+//               $coordinatesArr = $newCoordinateArr;
+//               $newCoordinateArr = [$coordinatesArr[0], [parseInt($coordinatesArr[1])] - 1];
+//               $newId = 'column' + $newCoordinateArr[0] + 'row' + $newCoordinateArr[1];
+//               $sideElem = $('#' + $newId);
+//               console.log($sideElem);
+//
+//               $loopCountD++;
+//               //Infinite loop prevention
+//               top++;
+//               if(top > 10){
+//                 break;
+//               };
+//               console.log('current', $currentElem);
+//             };
+//           console.log('loopcount down', $loopCountD);
+//         };
+//     const checkLoopsUD = () => {
+//       console.log($loopCountU, $loopCountD);
+//       if (($loopCountU + $loopCountD) >= 4){
+//         console.log('winner winner!');
+//       };
+//     };
 //   const checkWinsUD = () => {
 //
 //   }
