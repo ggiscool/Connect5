@@ -15,7 +15,8 @@ body {
 
 
 h1 {
-  font-family: 'Abril Fatface', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   font-size: 60px;
   /*padding-top: 10px;*/
   margin: auto;
@@ -34,14 +35,16 @@ h1 {
 .player1Turn {
   display: block;
   color: rgb(252,120,144);
-  font-family: 'Abril Fatface', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   font-size: 20px;
   margin: auto;
 }
 .player2Turn {
   display: none;
   color: cornflowerblue;
-  font-family: 'Abril Fatface', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   font-size: 20px;
   margin: auto;
 }
@@ -49,7 +52,9 @@ h1 {
 .player1Win {
   display: none;
   font-size: 70px;
-  font-family: 'Abril Fatface', cursive;
+  /*font: rgb(252,120,144);*/
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   position: relative;
   z-index: 2;
   text-align: center;
@@ -59,22 +64,18 @@ h1 {
 .player2Win{
   display: none;
   font-size: 70px;
-  font-family: 'Abril Fatface', cursive;
+  /*font: cornflowerblue;*/
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   position: relative;
   z-index: 2;
   text-align: center;
-    animation: color-change 1s infinite;
-
-@keyframes color-change {
-    0% { color: red; }
-    50% { color: blue; }
-    100% { color: red; }
-}
 }
 .stalemate {
   display: none;
   font-size: 70px;
-  font-family: 'Abril Fatface', cursive;
+  /*font-family: 'Abril Fatface', cursive;*/
+  font-family: 'Oldenburg', cursive;
   position: relative;
   z-index: 2;
   text-align: center;
