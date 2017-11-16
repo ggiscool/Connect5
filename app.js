@@ -41,7 +41,7 @@ const playersTakeTurns = (event) => {
 //If the clicked piece has no value, then toggle between Player 1 (red), and Player 2, (blue).
     if(!$test.eq(i).attr('value')){
       if( alternate === true){
-        $test.eq(i).css('background-color', 'red').attr('value', 'clickedRed').attr('player', 'Player 1');
+        $test.eq(i).css('background-color', 'rgb(252,120,144)').attr('value', 'clickedRed').attr('player', 'Player 1');
         // console.log("Player1");
         $player1Turn.css('display', 'none');
         $player2Turn.css('display', 'block');
@@ -69,7 +69,7 @@ const playersTakeTurns = (event) => {
         return 0;
 
       }else if(alternate === false){
-        $test.eq(i).css('background-color', 'blue').attr('value', 'clickedBlue').attr('player', 'Player 2');
+        $test.eq(i).css('background-color', 'cornflowerblue').attr('value', 'clickedBlue').attr('player', 'Player 2');
         // console.log("Player2");
         $player2Turn.css('display', 'none');
         $player1Turn.css('display', 'block');
@@ -456,11 +456,11 @@ const $stalemateCheck = () => {
   for (let i = 0; i < 8; i++){
     const row = $('#column' + (i+1) + 'row1');
     //CHeck if top row is empty
-    if((!( row.attr('value'))) && ($win === false)){
-    //Row is empty so return false
-    console.log('stalemate false');
-    return false;
-    };
+    if((!( row.attr('value'))) || ($win === true)){
+      //Row is empty so return false
+      console.log('stalemate false');
+      return false;
+      };
     console.log("column filled");
 // console.log('incrementing stalemate loop');
   };

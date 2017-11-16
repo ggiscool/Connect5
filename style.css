@@ -33,16 +33,16 @@ h1 {
 }
 .player1Turn {
   display: block;
-  color: red;
+  color: rgb(252,120,144);
   font-family: 'Abril Fatface', cursive;
-  font-size: 15px;
+  font-size: 20px;
   margin: auto;
 }
 .player2Turn {
   display: none;
-  color: blue;
+  color: cornflowerblue;
   font-family: 'Abril Fatface', cursive;
-  font-size: 15px;
+  font-size: 20px;
   margin: auto;
 }
 
