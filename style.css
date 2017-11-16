@@ -71,6 +71,14 @@ h1 {
     100% { color: red; }
 }
 }
+.stalemate {
+  display: none;
+  font-size: 70px;
+  font-family: 'Abril Fatface', cursive;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
 
 .container {
   /*border: 1px solid purple;*/
@@ -108,8 +116,4 @@ h1 {
   border-radius: 60px;
   position: relative;
   z-index: 1;
-}
-
-.stalemate {
-  display: none;
 }
