@@ -2,12 +2,12 @@ console.log("we have the meat$");
 
 //Define initial variables-----------------------------------------------
   let alternate = true;
-  const $youWin = $('<div>').addClass('youWin').text('YOU WIN GREAT JOB');
-  // const $turnBox = $('<div>').addClass('turnBox');
+  const $player1Win = $('<div>').addClass('player1Win').text('PLAYER 1 WINS GREAT JOB EVERYONE');
+  const $player2Win = $('<div>').addClass('player2Win').text('PLAYER 2 WINS GREAT JOB EVERYONE');
   const $player1Turn = $('<div>').addClass('player1Turn').text('Player 1, it\'s your turn!');
   const $player2Turn = $('<div>').addClass('player2Turn').text('Player 2, it\'s your turn!');
-  const $resetButton = $('#RESET');
-
+  const stalemate = $('<div>').addClass('stalemate').text('STALEMATE EVERYONE WINS');
+  let $win = false;
 
 
 //Function making the game board, columns, and circles--------------
@@ -46,7 +46,7 @@ const playersTakeTurns = (event) => {
         $player1Turn.css('display', 'none');
         $player2Turn.css('display', 'block');
 
-        alternate = false;
+
 
         //call checkWin fxns------------------------
         checkWinsL($test, i, $circle);
@@ -61,7 +61,9 @@ const playersTakeTurns = (event) => {
         checkWinsDLU($test, i, $circle);
         checkWinsDRD($test, i, $circle);
         checkLoopsDLUDRD();
+        $stalemateCheck();
 
+        alternate = false;
           //if no wins in 56 clicks, prompt as stalemate
           //while clicked val class === clicked val class, increase counts by 1
         return 0;
@@ -71,7 +73,7 @@ const playersTakeTurns = (event) => {
         // console.log("Player2");
         $player2Turn.css('display', 'none');
         $player1Turn.css('display', 'block');
-        alternate = true;
+
         //call checkWin fxns-------------------------------
         checkWinsL($test, i, $circle);
         checkWinsR($test, i, $circle);
@@ -85,6 +87,9 @@ const playersTakeTurns = (event) => {
         checkWinsDLU($test, i, $circle);
         checkWinsDRD($test, i, $circle);
         checkLoopsDLUDRD();
+        $stalemateCheck();
+
+        alternate = true;
         //if no wins in 56 clicks, prompt as stalemate
         return 0;
         };
@@ -186,9 +191,15 @@ const checkWinsR = ($test, i, $circle) => {
     const checkLoopsLR = () => {
       console.log($loopCountL, $loopCountR);
       if (($loopCountL + $loopCountR) >= 4){
-        // prompt($test.eq(i).attr('player') + "wins!");
+        if (alternate === true){
         console.log('winner winner!');
-        $youWin.css('display', 'block');
+        $($player1Win).css('display', 'block');
+        $win = true;
+      }else if(alternate === false){
+        console.log('winner winner!');
+        $($player2Win).css('display', 'block');
+        $win = true;
+      }
       };
     };
 //-------------------------------------------------
@@ -261,9 +272,15 @@ const checkWinsD = ($test, i, $circle) => {
     const checkLoopsUD = () => {
       console.log($loopCountU, $loopCountD);
       if (($loopCountU + $loopCountD) >= 4){
-        // prompt($test.eq(i) + "wins!")
+        if (alternate === true){
         console.log('winner winner!');
-        $youWin.css('display', 'block');
+        $($player1Win).css('display', 'block');
+        $win = true;
+      }else if(alternate === false){
+        console.log('winner winner!');
+        $($player2Win).css('display', 'block');
+        $win = true;
+      }
       };
     };
 
@@ -340,9 +357,15 @@ const checkWinsDLD = ($test, i, $circle) => {
     const checkLoopsDRUDLD = () => {
       console.log($loopCountDRU, $loopCountDLD);
       if (($loopCountDRU + $loopCountDLD) >= 4){
-        // prompt($test.eq(i) + "wins!")
+        if (alternate === true){
         console.log('winner winner!');
-        $youWin.css('display', 'block');
+        $($player1Win).css('display', 'block');
+        $win = true;
+      }else if(alternate === false){
+        console.log('winner winner!');
+        $($player2Win).css('display', 'block');
+        $win = true;
+      }
       };
     };
 
@@ -417,11 +440,28 @@ const checkWinsDLD = ($test, i, $circle) => {
       const checkLoopsDLUDRD = () => {
         console.log($loopCountDLU, $loopCountDRD);
         if (($loopCountDLU + $loopCountDRD) >= 4){
+          if (alternate === true){
           console.log('winner winner!');
-          $youWin.css('display', 'block');
-          // prompt($test.eq(i) + "wins!")
+          $($player1Win).css('display', 'block');
+          $win = true;
+        }else if(alternate === false){
+          console.log('winner winner!');
+          $($player2Win).css('display', 'block');
+          $win = true;
+        }
         };
       };
+const $stalemateCheck = () => {
+  console.log('checking stalemate');
+  // console.log((($('#column' + (i + 1) + 'row1').attr('value') === 'clickedRed' || $('#column' + (i + 1) + 'row1').attr('value') === 'clickedRed') && $win === false));
+  for (let i = 0; i < 8; i++){
+    if(($('#column' + (i+1) + 'row1').attr('value') === 'clickedRed' || $('#column' + (i+1) + 'row1').attr('value') === 'clickedBlue') && $win === false){
+    console.log($('#column' + (i+1) + 'row1'));
+    stalemate.css('display', 'block');
+    };
+  };
+};
+
 
 //Pseudocode for the rest of the game------------------------
 
@@ -440,7 +480,9 @@ $(() => {
   generateBoard();
 
 //Show that someone won
-$('.gameBoard').append($youWin);
+$('.container').prepend($player1Win);
+$('.container').prepend($player2Win);
+$('.container').prepend(stalemate);
 
   //Run game logic fxn when circles are clicked
   $('.circle').on('click', playersTakeTurns);
