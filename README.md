@@ -17,7 +17,9 @@
   Due to a few hold-ups mentioned in the "Technical DIfficulties" section, I could not do as much work on the CSS as I had wanted. In the future, I would like to add a theme, add multiple rounds with different randomized themes, add a scorecard for the rounds, add places to enter player names, and dry up my win scenarios code.
 
 ### Tech Used
-
+  -HTML, CSS, JavaScript, and jQuery.
+  -Atom for text-editing.
+  
 ### Credits
 https://www.gradient-animator.com/ -- Used to get the background of teh game to fluctuate through a color gradient.
 
