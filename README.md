@@ -2,6 +2,7 @@
 ## Connect 4, but BETTER.
 ### Created By: GG Gonzalez
 
+
 ### Overview
   Connect 5 is exactly like Connect 4, except that the board is one spot longer in each direction. Red and Blue players alternate placing pieces on the board, with the goal of getting 5 pieces in a row either vertically, horizontally, or diagonally. In this version, Red goes first upon the start of each new game, and alternates turns with Blue.
 
