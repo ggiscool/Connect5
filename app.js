@@ -452,24 +452,23 @@ const checkWinsDLD = ($test, i, $circle) => {
         };
       };
 const $stalemateCheck = () => {
-  // console.log((($('#column' + (i + 1) + 'row1').attr('value') === 'clickedRed' || $('#column' + (i + 1) + 'row1').attr('value') === 'clickedRed') && $win === false));
   for (let i = 0; i < 8; i++){
     const row = $('#column' + (i+1) + 'row1');
     //CHeck if top row is empty
     if((!( row.attr('value'))) && ($win === false)){
     //Row is empty so return false
-    console.log('stalemate false');
+    // console.log('stalemate false');
     return false;
     };
-    console.log("column filled");
+    // console.log("column filled");
 // console.log('incrementing stalemate loop');
   };
   //All columns are filled, so return true
   stalemate.css('display', 'block');
-  console.log('stalemate true');
+  // console.log('stalemate true');
   return true;
 
-  alert('stalemate');
+  // alert('stalemate');
 };
 
 
